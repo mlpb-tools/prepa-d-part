@@ -180,4 +180,237 @@
         <ol>
           <li><b>Jeu des enveloppes (20')</b> : répartir 900€.</li>
           <li><b>Cas serré (10')</b> : quoi couper en premier ?</li>
-          <li><b>Pièges (10')</b> : abonnements, h
+          <li><b>Pièges (10')</b> : abonnements, hors forfait, caution.</li>
+        </ol>
+        <p><b>Livrable :</b> plan d’économies (5 actions).</p>` + renderLinks('budget'),
+
+      loin:`<h2>🏞️ Vivre loin – Atelier</h2>
+        <p><b>Objectif :</b> garder le moral loin de chez soi.</p>
+        <ol>
+          <li><b>Carte de soutien (10')</b> : personnes/lieux/applis.</li>
+          <li><b>Rituel anti-stress (10')</b> : respiration 4-4-4.</li>
+          <li><b>Scénarios (10')</b> : solitude / langue → solutions.</li>
+        </ol>
+        <p><b>Livrable :</b> plan bien‑être (3 actions/sem).</p>` + renderLinks('loin'),
+
+      valeurs:`<h2>🤝 Valeurs – Atelier</h2>
+        <p><b>Objectif :</b> clarifier ce qui compte & s’engager.</p>
+        <ol>
+          <li><b>Ligne des valeurs (10')</b> : on se positionne.</li>
+          <li><b>3 valeurs → actions (10')</b> : comportements concrets.</li>
+          <li><b>Charte (10')</b> : 5 règles / 5 emojis.</li>
+        </ol>
+        <p><b>Livrable :</b> charte signée du groupe.</p>` + renderLinks('valeurs')
+    };
+
+    // --- Content (SOLO) — with actual exercises & handlers
+    const SOLO={
+      anglais:`<h2>🇬🇧 Anglais – Solo</h2>
+        <div class='grid-2'>
+          <div>
+            <h3>1) 5 mots utiles (courses)</h3>
+            <div class='row'>
+              <span class='pill' data-word='milk'>milk</span>
+              <span class='pill' data-word='bread'>bread</span>
+              <span class='pill' data-word='cashier'>cashier</span>
+              <span class='pill' data-word='receipt'>receipt</span>
+              <span class='pill' data-word='change'>change</span>
+            </div>
+            <p class='mini muted'>Clique un mot → prononciation. Écris ta <b>liste de courses</b> (5 produits) :</p>
+            <textarea id='en-list' rows='3' placeholder='milk, rice, apples…'></textarea>
+          </div>
+          <div>
+            <h3>2) Phrases à répéter</h3>
+            <div class='row'>
+              <button class='pill' data-say="Where is the nearest supermarket?">▶️ Supermarket</button>
+              <button class='pill' data-say="Could you repeat that, please?">▶️ Repeat</button>
+              <button class='pill' data-say="How much is this, please?">▶️ How much?</button>
+            </div>
+            <p class='mini muted'>Écris 1 phrase que tu utiliseras demain :</p>
+            <input id='en-commit' placeholder='Ex. I will ask for directions.' />
+          </div>
+        </div>
+        <button id='validate-anglais' class='pill'>✅ Valider Anglais</button>` + renderLinks('anglais'),
+
+      posture:`<h2>🧑‍💼 Posture – Solo</h2>
+        <h3>1) Mini-quiz</h3>
+        <div class='answers'>
+          <button data-ok='1'>Proposer une idée et passer à l’action</button>
+          <button data-ok='0'>Attendre des ordres clairs</button>
+          <button data-ok='0'>Se plaindre au collègue</button>
+        </div>
+        <h3>2) Message CNV (OSBD)</h3>
+        <label>Observation<input id='osbd-o' placeholder='Quand… (fait concret)'/></label>
+        <label>Sentiment<input id='osbd-s' placeholder='Je me sens…'/></label>
+        <label>Besoin<input id='osbd-b' placeholder='Parce que j’ai besoin de…'/></label>
+        <label>Demande<input id='osbd-d' placeholder='Est-ce que tu peux… ?'/></label>
+        <h3>3) Mon engagement</h3>
+        <input id='posture-commit' placeholder='Je m’engage à… (ex. demander un feedback chaque semaine)'/>
+        <button id='validate-posture' class='pill'>✅ Valider Posture</button>` + renderLinks('posture'),
+
+      vie:`<h2>🏠 Vie collective – Solo</h2>
+        <h3>1) Mini pacte coloc (3 règles)</h3>
+        <input id='vie-r1' placeholder='Ex. Vaisselle le jour même' />
+        <input id='vie-r2' placeholder='Ex. Silence 22h–7h' />
+        <input id='vie-r3' placeholder='Ex. Courses partagées' />
+        <h3>2) D’accord / Pas d’accord</h3>
+        <label><input type='checkbox' class='vie-qa' data-text="On fait une caisse commune"> On fait une caisse commune</label>
+        <label><input type='checkbox' class='vie-qa' data-text="Inviter sans prévenir c’est ok"> Inviter sans prévenir c’est ok</label>
+        <label><input type='checkbox' class='vie-qa' data-text="Chacun fait sa vaisselle tout de suite"> Chacun fait sa vaisselle tout de suite</label>
+        <h3>3) Message CNV (1 phrase)</h3>
+        <input id='vie-osbd' placeholder='Quand… je me sens… j’ai besoin… peux-tu…' />
+        <button id='validate-vie' class='pill'>✅ Valider Vie collective</button>` + renderLinks('vie'),
+
+      voyage:`<h2>✈️ Voyage – Solo</h2>
+        <h3>1) Check-list départ</h3>
+        <label><input type='checkbox' class='voy-ck' data-key='id'> Carte d’identité / passeport</label>
+        <label><input type='checkbox' class='voy-ck' data-key='ceam'> Carte européenne d’assurance maladie (CEAM)</label>
+        <label><input type='checkbox' class='voy-ck' data-key='ass'> Assurance santé/RC</label>
+        <label><input type='checkbox' class='voy-ck' data-key='billet'> Billets + logement</label>
+        <label><input type='checkbox' class='voy-ck' data-key='urgence'> Numéros d’urgence (112, ambassade)</label>
+        <h3>2) Mon tip voyage</h3>
+        <input id='voy-tip' placeholder='Ex. Scanner mes papiers et me les envoyer' />
+        <button id='validate-voyage' class='pill'>✅ Valider Voyage</button>` + renderLinks('voyage'),
+
+      budget:`<h2>💶 Budget – Solo</h2>
+        <div class='grid-2'>
+          <div>
+            <h3>1) Simulateur rapide</h3>
+            <label>Loyer (€)<input id='b-rent' type='range' min='150' max='1200' value='500'></label>
+            <label>Nourriture (€)<input id='b-food' type='range' min='80' max='500' value='200'></label>
+            <label>Transport (€)<input id='b-trans' type='range' min='20' max='200' value='60'></label>
+            <label>Loisirs (€)<input id='b-fun' type='range' min='0' max='200' value='60'></label>
+            <label>Revenus (€)<input id='b-inc' type='range' min='300' max='2000' value='900'></label>
+            <div id='b-left' class='kpi' style='margin-top:6px'><b>Reste :</b> <span id='b-leftv'>—</span></div>
+            <div id='b-msg' class='mini muted'></div>
+          </div>
+          <div>
+            <h3>2) Mes 3 astuces économies</h3>
+            <input id='b-tip1' placeholder='Ex. cuisiner 2 fois/semaine' />
+            <input id='b-tip2' placeholder='Ex. carte étudiante transports' />
+            <input id='b-tip3' placeholder='Ex. couper les abonnements inutiles' />
+          </div>
+        </div>
+        <button id='validate-budget' class='pill'>✅ Valider Budget</button>` + renderLinks('budget'),
+
+      loin:`<h2>🏞️ Vivre loin – Solo</h2>
+        <h3>1) Mon plan bien‑être</h3>
+        <label><input type='checkbox' class='loin-act' data-text='Respiration 4-4-4'> Respiration 4-4-4 (inspire 4s – bloque 4s – expire 4s)</label>
+        <label><input type='checkbox' class='loin-act' data-text='Routine sommeil'> Routine sommeil (heure fixe)</label>
+        <label><input type='checkbox' class='loin-act' data-text='Marche 10 min'> Marche 10 min</label>
+        <label><input type='checkbox' class='loin-act' data-text='Appeler un proche'> Appeler un proche</label>
+        <h3>2) Mon cercle de soutien</h3>
+        <input id='loin-people' placeholder='Personnes (famille, ami·e, conseiller)'>
+        <input id='loin-places' placeholder='Lieux (asso, lieu accueillant)'>
+        <input id='loin-apps' placeholder='Applis (cartes, traduction, bien‑être)'>
+        <button id='validate-loin' class='pill'>✅ Valider Vivre loin</button>` + renderLinks('loin'),
+
+      valeurs:`<h2>🤝 Valeurs – Solo</h2>
+        <h3>1) Choisis 3 valeurs</h3>
+        <div id='val-tags' class='row'>
+          ${['Respect','Solidarité','Liberté','Responsabilité','Créativité','Confiance','Écoute','Autonomie'].map(v=>`<span class='pill val' data-v='${v}'>${v}</span>`).join('')}
+        </div>
+        <h3>2) Exemple concret</h3>
+        <textarea id='val-ex' rows='3' placeholder='Comment tu vis ces valeurs ? (ex. j’arrive à l’heure, j’aide un coloc…)'></textarea>
+        <h3>3) Mini charte (5 emojis)</h3>
+        <input id='val-charte' placeholder='Ex. 🤝🕒🧹🔇😊' />
+        <button id='validate-valeurs' class='pill'>✅ Valider Valeurs</button>` + renderLinks('valeurs')
+    };
+
+    // --- Open & render
+    function openTheme(key){
+      CURRENT_THEME=key; ST.last = key; save();
+      const body=document.getElementById('panelBody');
+      body.innerHTML = (CURRENT_MODE==='solo'? SOLO[key]: ATELIER[key]) || '<p>Contenu à venir.</p>';
+      if(CURRENT_MODE==='solo') bindSolo(key);
+      else bindAtelier(key);
+    }
+
+    function switchMode(mode){
+      CURRENT_MODE=mode;
+      document.getElementById('btnSolo').classList.toggle('active', mode==='solo');
+      document.getElementById('btnAtelier').classList.toggle('active', mode==='atelier');
+      document.getElementById('panelBody').innerHTML='<p class="muted">Choisis un thème.</p>';
+    }
+
+    // --- Helpers
+    function tts(txt){ try{const u=new SpeechSynthesisUtterance(txt); u.lang='en-US'; speechSynthesis.speak(u);}catch(e){} }
+    function markCorrectness(){
+      document.querySelectorAll('.answers button').forEach(btn=>{
+        btn.onclick=()=> btn.classList.add(btn.dataset.ok==='1'?'correct':'wrong');
+      });
+    }
+
+    // --- Bind ATELIER (nothing heavy, just allow printing/use)
+    function bindAtelier(key){ /* no-op for now */ }
+
+    // --- Bind SOLO per theme
+    function bindSolo(key){
+      markCorrectness();
+      if(key==='anglais'){
+        document.querySelectorAll('[data-word]').forEach(p=> p.onclick=()=> tts(p.dataset.word));
+        document.querySelectorAll('[data-say]').forEach(b=> b.onclick=()=> tts(b.dataset.say));
+        document.getElementById('validate-anglais').onclick=()=>{ ST.anglais={solo:true, list:val('en-list'), commit:val('en-commit')}; save(); alert('Anglais validé ✅'); };
+      }
+      if(key==='posture'){
+        document.getElementById('validate-posture').onclick=()=>{
+          ST.posture={solo:true, osbd:{o:val('osbd-o'), s:val('osbd-s'), b:val('osbd-b'), d:val('osbd-d')}, commit:val('posture-commit')};
+          save(); alert('Posture validée ✅');
+        };
+      }
+      if(key==='vie'){
+        document.getElementById('validate-vie').onclick=()=>{
+          const rules=[val('vie-r1'),val('vie-r2'),val('vie-r3')];
+          const opinions=Array.from(document.querySelectorAll('.vie-qa:checked')).map(x=> x.dataset.text);
+          ST.vie={solo:true, rules, opinions, osbd:val('vie-osbd')}; save(); alert('Vie collective validée ✅');
+        };
+      }
+      if(key==='voyage'){
+        const cks = ()=> Array.from(document.querySelectorAll('.voy-ck:checked')).map(x=> x.dataset.key);
+        document.getElementById('validate-voyage').onclick=()=>{ ST.voyage={solo:true, checks:cks(), tip:val('voy-tip')}; save(); alert('Voyage validé ✅'); };
+      }
+      if(key==='budget'){
+        const ids=['b-rent','b-food','b-trans','b-fun','b-inc'];
+        ids.forEach(id=> on(id,'input',computeBudget));
+        computeBudget();
+        document.getElementById('validate-budget').onclick=()=>{
+          ST.budget={solo:true, tips:[val('b-tip1'),val('b-tip2'),val('b-tip3')], lastLeft:get('b-leftv').textContent}; save(); alert('Budget validé ✅');
+        };
+      }
+      if(key==='loin'){
+        document.getElementById('validate-loin').onclick=()=>{
+          const acts = Array.from(document.querySelectorAll('.loin-act:checked')).map(x=> x.dataset.text);
+          ST.loin={solo:true, acts, people:val('loin-people'), places:val('loin-places'), apps:val('loin-apps')}; save(); alert('Vivre loin validé ✅');
+        };
+      }
+      if(key==='valeurs'){
+        document.querySelectorAll('.val').forEach(v=> v.onclick=()=> v.classList.toggle('active'));
+        document.getElementById('validate-valeurs').onclick=()=>{
+          const values = Array.from(document.querySelectorAll('.val.active')).map(x=> x.dataset.v).slice(0,3);
+          if(values.length<3){ alert('Choisis au moins 3 valeurs'); return; }
+          ST.valeurs={solo:true, values, exemple:val('val-ex'), charte:val('val-charte')}; save(); alert('Valeurs validées ✅');
+        };
+      }
+    }
+
+    // --- Budget compute
+    function computeBudget(){
+      const v = {rent:num('b-rent'), food:num('b-food'), trans:num('b-trans'), fun:num('b-fun'), inc:num('b-inc')};
+      const expenses = v.rent+v.food+v.trans+v.fun; const left = v.inc - expenses;
+      get('b-leftv').textContent = left.toFixed(0)+' €';
+      const msg = get('b-msg');
+      msg.textContent = left>=150 ? '✅ Reste ≥ 150€ : ok' : (left>=0 ? '⚠️ Reste faible : fais un plan d’économies' : '⛔ Déficit : ajuste tes dépenses');
+      msg.style.color = left>=150? 'var(--accent)' : (left>=0? '#f59e0b' : '#ef4444');
+    }
+
+    // --- tiny DOM helpers
+    const get = id => document.getElementById(id);
+    const val = id => (get(id)?.value||'').trim();
+    const num = id => Number(get(id)?.value||0);
+    const on = (id,ev,fn)=> get(id)?.addEventListener(ev,fn);
+
+    // init
+    updateKpis();
+  </script>
+</body>
+</html>
