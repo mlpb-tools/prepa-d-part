@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prépa Départ – Version Jeunes</title>
+  <title>Prépa Départ – Version Jeunes (rich content)</title>
   <style>
-    :root{--bg:#0f172a;--card:#111827ee;--mut:#94a3b8;--accent:#22c55e}
-    body{font-family:Arial Rounded MT,Helvetica,sans-serif;background:var(--bg);color:#f8fafc;margin:0;line-height:1.5}
+    :root{--bg:#0f172a;--card:#111827ee;--mut:#94a3b8;--accent:#22c55e;--accent2:#38bdf8}
+    body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:#f8fafc;margin:0;line-height:1.5}
     h1,h2,h3{font-family:"Poppins",Arial,sans-serif}
-    .card{background:var(--card);border-radius:16px;padding:16px;margin:16px}
+    .card{background:var(--card);border-radius:16px;padding:16px;margin:16px;border:1px solid #1f2937}
     .modules{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     .module{background:#0b1228;border:1px solid #334155;border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
     .module:hover{transform:scale(1.02);box-shadow:0 6px 12px #0007}
@@ -16,31 +16,48 @@
     a.module{text-decoration:none;color:inherit;display:block}
     a.module:hover{background:#1e293b}
     .muted{color:var(--mut)}
-    .panelBtns{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px}
+    .panelBtns{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px;flex-wrap:wrap}
     .panelBtns button{background:#0b1228;color:#fff;border:1px solid #334155;border-radius:10px;padding:8px 10px;cursor:pointer;transition:0.2s}
     .panelBtns button:hover{background:#1e293b}
     .panelBtns button.active{background:var(--accent);color:#000}
-    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:#0b1228;color:#fff;margin-top:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:#0b1228;color:#fff;margin-top:6px}
     label{display:block;margin:6px 0}
-    @media print{body{background:#fff;color:#000} header, .modules, #readme, #eu{display:none!important}}
+    .answers{display:grid;gap:8px;margin-top:8px}
+    .answers button{background:#0b1328;border:1px solid #334155;padding:10px;border-radius:10px;color:#fff;text-align:left;cursor:pointer}
+    .answers button.correct{border-color:#22c55e}
+    .answers button.wrong{border-color:#ef4444}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid #334155;border-radius:999px;margin:2px;background:#0b1228;font-size:.9rem;cursor:pointer}
+    .pill.active{border-color:var(--accent);background:#102a1a}
+    .resources{margin-top:12px;padding:12px;border:1px dashed #334155;border-radius:12px;background:#0b1228}
+    .resources h4{margin:0 0 6px}
+    .mini{font-size:.9rem}
+    .kpi{background:#0b1228;border:1px solid #334155;border-radius:12px;padding:10px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+    @media print{body{background:#fff;color:#000} header, .modules, #readme{display:none!important} .card{border:none;box-shadow:none;margin:0} a{color:#000;text-decoration:none} .resources{border-color:#ddd;background:#fff}}
   </style>
 </head>
 <body>
   <header class="card">
-    <h1>🚀 Prépa Départ</h1>
-    <p class="muted">Un kit simple et fun pour se préparer avant de partir à l’étranger. 7 thèmes, à faire seul ou en groupe.</p>
+    <h1>🚀 Prépa Départ – Version Jeunes</h1>
+    <p class="muted">7 thèmes, avec des exercices prêts à l’emploi (solo & atelier) + liens EU Academy, LS4YOU, Psycom & jeux en ligne.</p>
+    <div class="row">
+      <div class="kpi"><div class="mini muted">Progression (Solo)</div><div id="kpiPct" style="font-weight:800;font-size:1.2rem">0%</div></div>
+      <div class="kpi"><div class="mini muted">Dernier thème</div><div id="kpiLast" class="mini">—</div></div>
+    </div>
   </header>
 
   <main>
     <section class="card">
       <h2>🌍 Nos 7 thèmes</h2>
       <div class="modules">
-        <div class="module" onclick="openTheme('anglais')"><div class="badge">Anglais</div><h3>Anglais utile</h3><p>Apprends les phrases qui servent vraiment (coloc, voyage, supermarché...).</p></div>
-        <div class="module" onclick="openTheme('posture')"><div class="badge">Posture</div><h3>Attitude & soft skills</h3><p>Savoir s’adapter, être ouvert et pro.</p></div>
-        <div class="module" onclick="openTheme('vie')"><div class="badge">Vie collective</div><h3>Coloc & vie en groupe</h3><p>Fixer des règles cool et éviter les embrouilles.</p></div>
+        <div class="module" onclick="openTheme('anglais')"><div class="badge">Anglais</div><h3>Anglais utile</h3><p>Les phrases qui servent vraiment (coloc, voyage, courses, boulot).</p></div>
+        <div class="module" onclick="openTheme('posture')"><div class="badge">Posture</div><h3>Attitude & soft skills</h3><p>S’adapter, demander de l’aide, être pro.</p></div>
+        <div class="module" onclick="openTheme('vie')"><div class="badge">Vie collective</div><h3>Coloc & équipe</h3><p>Règles simples, éviter les embrouilles.</p></div>
         <div class="module" onclick="openTheme('voyage')"><div class="badge">Voyage</div><h3>Préparer ton départ</h3><p>Checklist, papiers, sécurité, astuces.</p></div>
         <div class="module" onclick="openTheme('budget')"><div class="badge">Budget</div><h3>Ton argent</h3><p>Éviter de finir à sec, gérer ton cash.</p></div>
-        <div class="module" onclick="openTheme('loin')"><div class="badge">Vivre loin</div><h3>S’éloigner de chez soi</h3><p>Bien-être, routines et réseaux de soutien.</p></div>
+        <div class="module" onclick="openTheme('loin')"><div class="badge">Vivre loin</div><h3>S’éloigner de chez soi</h3><p>Bien-être, routines, réseau de soutien.</p></div>
         <div class="module" onclick="openTheme('valeurs')"><div class="badge">Valeurs</div><h3>Engagement</h3><p>S’impliquer, respecter, construire ensemble.</p></div>
       </div>
     </section>
@@ -57,40 +74,110 @@
     <section class="card" id="readme">
       <h2>ℹ️ Mode d’emploi</h2>
       <ul>
-        <li>👉 Clique sur un thème pour voir la fiche et les exercices.</li>
-        <li>🎧 <b>Mode Solo</b> = tu t’entraînes à ton rythme (quiz, vidéos, flashcards).</li>
-        <li>👥 <b>Mode Atelier</b> = à faire avec ton conseiller et d’autres jeunes.</li>
-        <li>🖨️ Tu peux imprimer la fiche pour garder une trace.</li>
+        <li>👉 Clique un thème, fais les exercices, clique <b>Valider</b> pour sauvegarder.</li>
+        <li>🎧 Solo = exercices rapides (quiz, listes, curseurs, checklists).</li>
+        <li>👥 Atelier = déroulé simple à animer (conseiller), avec livrables.</li>
+        <li>🔗 Sous chaque thème : liens utiles (EU Academy, LS4YOU, Psycom, jeux).</li>
       </ul>
     </section>
   </main>
 
   <script>
+    // --- State
+    const ST = JSON.parse(localStorage.getItem('pdj_state')||'{}');
+    const THEMES=['anglais','posture','vie','voyage','budget','loin','valeurs'];
+    function save(){ localStorage.setItem('pdj_state', JSON.stringify(ST)); updateKpis(); }
+    function updateKpis(){
+      const pct = Math.round(THEMES.reduce((a,t)=> a + (ST[t]?.solo? 1:0), 0)/THEMES.length*100);
+      document.getElementById('kpiPct').textContent = pct+'%';
+      document.getElementById('kpiLast').textContent = ST.last || '—';
+    }
+
     let CURRENT_MODE='solo';
-    const FICHES={
-      anglais:`<h2>🇬🇧 Anglais – Atelier</h2><p>Objectif : se débrouiller vite en voyage et en coloc.</p><ul><li>Jeu brise-glace : “Deux vérités, un mensonge”</li><li>Roleplay : arrivée à l’aéroport, installation en coloc</li><li>Débrief collectif : mots utiles et situations difficiles</li></ul><p>Ressources fun : <a href='https://quizlet.com/fr' target='_blank'>Quizlet vocab</a> • <a href='https://learningapps.org/' target='_blank'>LearningApps</a></p>`,
-      posture:`<h2>🧑‍💼 Posture – Atelier</h2><p>Objectif : comprendre qu’être actif et respectueux, ça change tout.</p><ul><li>Brainstorm : c’est quoi “avoir une bonne attitude” ?</li><li>Jeu de cartes : que ferais-tu si… ?</li><li>Discussion : rôle du jeune, du tuteur, de l’entreprise</li></ul><p>Quiz live : <a href='https://kahoot.com/' target='_blank'>Kahoot soft skills</a></p>`,
-      vie:`<h2>🏠 Vie collective – Atelier</h2><p>Objectif : poser des règles simples pour vivre en coloc sans galères.</p><ul><li>Écrire ensemble 5 règles de vie</li><li>Jeu d’opinion : tu es d’accord / pas d’accord ?</li><li>Mini-outil de communication positive (OSBD)</li></ul><p>Activité externe : <a href='https://edpuzzle.com/' target='_blank'>Vidéos interactives</a></p>`,
-      voyage:`<h2>✈️ Voyage – Atelier</h2><p>Objectif : partir préparé, sans stress.</p><ul><li>Carte mentale : papiers, santé, logement</li><li>Quiz projeté EU Academy</li><li>Cas pratiques : perte de papiers, urgence</li></ul><p>Astuce interculturelle : <a href='https://www.peacecorps.gov/educators/resources/' target='_blank'>Peace Corps</a></p>`,
-      budget:`<h2>💶 Budget – Atelier</h2><p>Objectif : apprendre à tenir jusqu’à la fin du mois.</p><ul><li>Jeu des enveloppes : répartir un budget type</li><li>Étude de cas : gérer un budget serré</li><li>Débat : pièges courants (abonnements, hors forfait…)</li></ul><p>Mini-jeux : <a href='https://www.budgetgames.org/' target='_blank'>Budget Games</a></p>`,
-      loin:`<h2>🏞️ Vivre loin – Atelier</h2><p>Objectif : garder le moral quand on est loin de ses repères.</p><ul><li>Carte de soutien : qui appeler en cas de coup dur ?</li><li>Exercice respiration anti-stress</li><li>Scénarios : solitude, barrière de la langue</li></ul><p>Vidéo bien-être : <a href='https://edpuzzle.com/' target='_blank'>EdPuzzle</a></p>`,
-      valeurs:`<h2>🤝 Valeurs – Atelier</h2><p>Objectif : réfléchir à ce qui compte pour toi et pour le groupe.</p><ul><li>Ligne des valeurs : chacun se positionne</li><li>Choisir 3 valeurs clés → comportements</li><li>Écrire une charte commune</li></ul><p>Quiz : <a href='https://kahoot.com/' target='_blank'>Kahoot valeurs</a></p>`
+    let CURRENT_THEME=null;
+
+    // --- Resource shelves per theme (links kept light & youth-friendly)
+    const LINKS={
+      anglais:[
+        ['EU Academy – OLS: Learn Language Basics','https://academy.europa.eu/courses/learn-language-basics-with-online-language-support/view/'],
+        ['Quizlet – Vocab voyage/coloc','https://quizlet.com/fr'],
+        ['LearningApps – Jeux de vocab','https://learningapps.org/'],
+        ['LyricsTraining – Chansons','https://lyricstraining.com/']
+      ],
+      posture:[
+        ['EU Academy – Cultural Awareness','https://academy.europa.eu/courses/fostering-cultural-awareness-through-global-education?lang=en'],
+        ['Kahoot – Soft skills (quiz live)','https://kahoot.com/schools-u/'],
+        ['LS4YOU – Communication assertive (fiche)',''],
+      ],
+      vie:[
+        ['LearningApps – Communication','https://learningapps.org/'],
+        ['LS4YOU – Coopérer & gérer les conflits',''],
+      ],
+      voyage:[
+        ['EU Academy – Getting Started OLS','https://academy.europa.eu/courses/getting-started-for-ols-learners?lang=fr'],
+        ['Peace Corps – Ressources interculturelles','https://www.peacecorps.gov/educators/resources/']
+      ],
+      budget:[
+        ['BudgetGames – jeux budget','https://www.budgetgames.org/'],
+        ['Citéco – Jeux éco','https://citeco.fr/jeux']
+      ],
+      loin:[
+        ['Psycom – Boîte à outils bien-être','https://www.psycom.org/outils/'],
+        ['LS4YOU – Gestion du stress','']
+      ],
+      valeurs:[
+        ['Kahoot – Valeurs & éthique','https://kahoot.com/schools-u/'],
+        ['LS4YOU – Valeurs & comportements','']
+      ]
     };
 
-    const SOLO={
-      anglais:`<h2>🇬🇧 Anglais – Solo</h2><p>🎧 Apprends 3 phrases utiles par jour :</p><button onclick="tts('Where is the nearest supermarket?')">▶️ Où est le supermarché ?</button><button onclick="tts('Could you repeat that, please?')">▶️ Tu peux répéter ?</button><p>Entraîne-toi avec <a href='https://quizlet.com/fr' target='_blank'>Quizlet</a></p>`,
-      posture:`<h2>🧑‍💼 Posture – Solo</h2><p>Scénario : ton tuteur dit “sois proactif”. Tu fais quoi ?</p><div class='answers'><button data-ok='1'>Je propose une idée et j’agis</button><button data-ok='0'>J’attends des ordres</button><button data-ok='0'>Je râle</button></div><p>Note ton engagement perso :</p><input placeholder='Je m’engage à…'>`,
-      vie:`<h2>🏠 Vie collective – Solo</h2><p>Écris ton mini-pacte coloc :</p><input placeholder='1. ...'><input placeholder='2. ...'><input placeholder='3. ...'><p>Teste-toi avec <a href='https://learningapps.org/' target='_blank'>LearningApps</a></p>`,
-      voyage:`<h2>✈️ Voyage – Solo</h2><p>Ta check-list rapide :</p><label><input type='checkbox'/> Carte d’identité / CEAM</label><label><input type='checkbox'/> Billets + logement</label><label><input type='checkbox'/> Numéros d’urgence</label><label><input type='checkbox'/> Assurance santé</label><p>Vidéo interactive : <a href='https://edpuzzle.com/' target='_blank'>EdPuzzle départ</a></p>`,
-      budget:`<h2>💶 Budget – Solo</h2><p>Glisse les curseurs et vois ton reste d’argent :</p><label>Loyer <input type='range' min='150' max='1000' value='400'></label><label>Nourriture <input type='range' min='50' max='500' value='200'></label><label>Transport <input type='range' min='20' max='200' value='80'></label><label>Loisirs <input type='range' min='0' max='200' value='60'></label><label>Revenus <input type='range' min='300' max='2000' value='900'></label><div id='leftover'></div>`,
-      loin:`<h2>🏞️ Vivre loin – Solo</h2><p>Note 3 actions pour te sentir bien chaque semaine :</p><input placeholder='1. ...'><input placeholder='2. ...'><input placeholder='3. ...'><p>Vidéo zen : <a href='https://edpuzzle.com/' target='_blank'>Respiration guidée</a></p>`,
-      valeurs:`<h2>🤝 Valeurs – Solo</h2><p>Choisis 3 valeurs importantes pour toi :</p><input placeholder='Ex : Respect'><input placeholder='Ex : Solidarité'><input placeholder='Ex : Liberté'><p>Fais un quiz : <a href='https://kahoot.com/' target='_blank'>Kahoot valeurs</a></p>`
-    };
+    function renderLinks(theme){
+      const arr = LINKS[theme]||[];
+      const items = arr.map(([label,url])=> url? `<li><a href="${url}" target="_blank" rel="noopener">${label}</a></li>` : `<li>${label} (à fournir par le conseiller)</li>`).join('');
+      return `<div class="resources"><h4>🔗 Liens utiles</h4><ul class="mini">${items||'<li>À venir…</li>'}</ul></div>`;
+    }
 
-    function openTheme(key){const body=document.getElementById('panelBody');body.innerHTML=CURRENT_MODE==='solo'?SOLO[key]:FICHES[key];bindAnswers();}
-    function switchMode(mode){CURRENT_MODE=mode;document.getElementById('btnSolo').classList.remove('active');document.getElementById('btnAtelier').classList.remove('active');document.getElementById('btn'+mode.charAt(0).toUpperCase()+mode.slice(1)).classList.add('active');document.getElementById('panelBody').innerHTML='<p class="muted">Choisis un thème.</p>'}
-    function bindAnswers(){document.querySelectorAll('.answers button').forEach(btn=>{btn.onclick=()=>{if(btn.dataset.ok==='1'){btn.style.borderColor='lime'}else{btn.style.borderColor='red'}}});}
-    function tts(txt){const u=new SpeechSynthesisUtterance(txt);speechSynthesis.speak(u)}
-  </script>
-</body>
-</html>
+    // --- Content (ATELIER) — concise, action-based
+    const ATELIER={
+      anglais:`<h2>🇬🇧 Anglais – Atelier</h2>
+        <p><b>Objectif :</b> se débrouiller vite en voyage/coloc.</p>
+        <ol>
+          <li><b>Icebreaker (10')</b> : « Deux vérités & un mensonge » (en anglais).</li>
+          <li><b>Jeux de rôle (20')</b> : Aéroport & Coloc (pairs).</li>
+          <li><b>Débrief (10')</b> : 3 phrases utiles notées par chacun.</li>
+        </ol>
+        <p><b>Livrable :</b> liste perso de 10 mots/phrases utiles.</p>` + renderLinks('anglais'),
+
+      posture:`<h2>🧑‍💼 Posture – Atelier</h2>
+        <p><b>Objectif :</b> adopter une attitude pro (proactive & respectueuse).</p>
+        <ol>
+          <li><b>Brainstorm (10')</b> : mots-clés d’une bonne posture.</li>
+          <li><b>Cartes situations (20')</b> : retard, erreur, nouveau collègue → réponses possibles.</li>
+          <li><b>Focus rôles (10')</b> : moi / tuteur / structure (qui fait quoi ?).</li>
+        </ol>
+        <p><b>Livrable :</b> 3 engagements écrits « Je m’engage à… »</p>` + renderLinks('posture'),
+
+      vie:`<h2>🏠 Vie collective – Atelier</h2>
+        <p><b>Objectif :</b> poser des règles simples pour éviter les embrouilles.</p>
+        <ol>
+          <li><b>Pacte coloc (15')</b> : 5 règles + procédure conflit.</li>
+          <li><b>D’accord / Pas d’accord (10')</b> : 6 phrases projetées.</li>
+          <li><b>CNV rapide (10')</b> : un message OSBD par personne.</li>
+        </ol>
+        <p><b>Livrable :</b> pacte affichable + photo.</p>` + renderLinks('vie'),
+
+      voyage:`<h2>✈️ Voyage – Atelier</h2>
+        <p><b>Objectif :</b> partir préparé, sans stress.</p>
+        <ol>
+          <li><b>Carte mentale (15')</b> : papiers, santé, logement.</li>
+          <li><b>Cas pratiques (15')</b> : passeport perdu, urgence médicale.</li>
+          <li><b>Astuce perso (5')</b> : chacun partage 1 tip.</li>
+        </ol>
+        <p><b>Livrable :</b> checklist commune validée.</p>` + renderLinks('voyage'),
+
+      budget:`<h2>💶 Budget – Atelier</h2>
+        <p><b>Objectif :</b> tenir jusqu’à la fin du mois.</p>
+        <ol>
+          <li><b>Jeu des enveloppes (20')</b> : répartir 900€.</li>
+          <li><b>Cas serré (10')</b> : quoi couper en premier ?</li>
+          <li><b>Pièges (10')</b> : abonnements, h
